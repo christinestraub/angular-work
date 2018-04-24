@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="row">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="page-header">
+          Snapshot
+          <!--<button class="btn btn-primary" ng-click="vm.syncData()">Sync</button>-->
+        </h1>
+      </div>
+    </div>
+  </div>
+  <form class="form" name="form" ng-submit="vm.set(form)" nonvalidate>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          Snapshots
+        </div>
+        <div class="panel-body">
+          <div class="row" style="margin: 5px">
+            <div class="row">
+              <table class="table table-striped" st-pipe="vm.callServer" st-table="vm.displayed">
+                <thead>
+                <tr>
+                  <td colspan="5" class="text-center"
+                      st-pagination=""
+                      st-items-by-page="vm.itemsByPage"
+                      st-displayed-pages="vm.displayedPages">
+                  </td>
+                </tr>
+                <tr>
+                  <th st-sort="archive">Archive</th>
+                  <th st-sort="path">Path</th>
+                  <th st-sort="file">File</th>
+                  <th st-sort="tag">Tag</th>
+                  <th st-sort="val">Value</th>
+                  <th st-sort="ccc">CCC #</th>
+                  <th st-sort="">Chassis</th>
+                </tr>
+                <tr>
+                  <th><input st-search="archive" placeholder="Archive" class="input-sm form-control" type="search"></th>
+                  <th><input st-search="path" placeholder="Path" class="input-sm form-control" type="search"></th>
+                  <th><input st-search="file" placeholder="File" class="input-sm form-control" type="search"></th>
+                  <th><input st-search="tag" placeholder="Tag" class="input-sm form-control" type="search"></th>
+                  <th><input st-search="val" placeholder="Value" class="input-sm form-control" type="search"></th>
+                  <th><input st-search="ccc" placeholder="CCC #" class="input-sm form-control" type="search"></th>
+                  <th><input st-search="chassis" placeholder="Chassis" class="input-sm form-control" type="search"></th>
+                </tr>
+                </thead>
+                <tbody ng-if="!vm.loading" ng-repeat="(key, value) in vm.displayed | groupBy: 'archive'">
+                <tr ng-if="key !== 'undefined'" class="text-left text-uppercase text-info">
+                  <td colspan="6">
+                    {{key}} [ Region: {{ value[0].region }}, Country: {{ value[0].country }} at {{ value[0].uploaded_on }}, CCC# {{ value[0].ccc }}]
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td colspan="5">
+                    <table class="table table-striped" style="width: 100%">
+                      <tbody ng-repeat="(key1, value1) in value | groupBy: 'path'">
+                      <tr ng-if="key1 !== 'undefined'" class="text-left text-uppercase text-info">
+                        <td colspan="4">{{key1}}</td>
+                      </tr>
+                      <tr>
+                        <td style="width: 12%"></td>
+                        <td colspan="4">
+                          <table style="width: 100%;">
+                            <tbody ng-repeat="(key2, value2) in value1 | groupBy: 'file'">
+                            <tr ng-if="key2 !== 'undefined'" class="text-left text-uppercase text-info">
+                              <td colspan="3">
+                                <div style="margin: 5px">
+                                  {{key2 | uppercase}}
+                                </div>
+                              </td>
+                            </tr>
+                            <tr ng-repeat="row in value2">
+                              <td></td>
+                              <td>{{row['tag']}}</td>
+                              <td>{{row['val']}}</td>
+                            </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="5" class="text-center"
+                        st-pagination=""
+                        st-items-by-page="vm.itemsByPage"
+                        st-displayed-pages="vm.displayedPages">
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>

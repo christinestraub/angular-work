@@ -1,0 +1,69 @@
+<div class="modal-header">
+  <h3 class="modal-title">
+    Compare Snapshot
+    <div class="pull-right">
+      <button class="btn panel-green btn-xs" type="button" ng-click="$ctrl.cancel()">
+        <span title="Close" class="glyphicon glyphicon-remove-circle"></span>
+      </button>
+    </div>
+  </h3>
+</div>
+<div class="modal-body">
+  <table>
+    <thead>
+    <tr>
+      <td width="20%"></td>
+      <td></td>
+      <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr><td>CCC #</td><th>{{$ctrl.cur_archive.project_number}}</th><th>{{$ctrl.old_archive.project_number}}</th></tr>
+    <tr><td>File Name:</td><th>{{$ctrl.cur_archive.file_name}}</th><th>{{$ctrl.old_archive.file_name}}</th></tr>
+    <tr><td>User Name:</td><th>{{$ctrl.cur_archive.user_name}}</th><th>{{$ctrl.old_archive.user_name}}</th></tr>
+    <tr><td>Upload Time:</td><th>{{$ctrl.cur_archive.uploaded_on}}</th><th>{{$ctrl.old_archive.uploaded_on}}</th></tr>
+    <tr><td>Region</td><th>{{$ctrl.cur_archive.region}}</th><th>{{$ctrl.old_archive.region}}</th></tr>
+    <tr><td>Country</td><th>{{$ctrl.cur_archive.country}}</th><th>{{$ctrl.old_archive.country}}</th></tr>
+    <tr><td>Project:</td><th>{{$ctrl.cur_archive.project}}</th><th>{{$ctrl.old_archive.project}}</th></tr>
+    <tr><td>Chassis:</td><th>{{$ctrl.cur_archive.chassis}}</th><th>{{$ctrl.old_archive.chassis}}</th></tr>
+    <tr><td>Project ID:</td><th>{{$ctrl.cur_archive.project_id}}</th><th>{{$ctrl.old_archive.project_id}}</th></tr>
+    <tr><td colspan="3"><hr></td></tr>
+    </tbody>
+  </table>
+  <table>
+    <tbody>
+    <tr>
+      <td>
+        <table>
+          <tbody>
+          <tr ng-repeat="field in $ctrl.snapshot.fields">
+            <td>
+              <table>
+                <thead>
+                <tr>
+                  <td style="width: 33%"></td>
+                  <td style="width: 33%"></td>
+                  <td style="width: 33%"></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="tag in field.tags">
+                  <td>{{ tag.tag }}</td>
+                  <td><b>{{ tag.value }}</b></td>
+                  <td><b>{{ tag.old_value }}</b></td>
+                </tr>
+                <tr><td colspan="3"><hr></td></tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="$ctrl.cancel()">Close</button>
+</div>

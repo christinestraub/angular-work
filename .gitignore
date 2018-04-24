@@ -1,0 +1,17 @@
+/vendor/
+/logs/*
+!/logs/README.#Dependency directory
+/node_modules/
+
+#Working directory
+temp
+uploads
+
+composer.phar
+composer.lock
+
+/.idea/
+/dist/*
+/.tmp/
+
+/client/bower_components/

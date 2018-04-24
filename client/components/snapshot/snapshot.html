@@ -1,0 +1,101 @@
+<div class="modal-header">
+  <h3 class="modal-title">
+    Snapshot
+    <div class="pull-right">
+      <button class="btn panel-green btn-xs" type="button" ng-click="$ctrl.cancel()">
+        <span title="Close" class="glyphicon glyphicon-remove-circle"></span>
+      </button>
+    </div>
+  </h3>
+</div>
+<div class="modal-body">
+  <table>
+    <thead>
+    <tr>
+      <td width="20%"></td>
+      <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><label>CCC #</label></td>
+      <td>
+        <div class="form-group">
+          <input class="form-control" ng-model="$ctrl.project_number">
+        </div>
+      </td>
+    </tr>
+    <tr><td>File Name:</td><th>{{$ctrl.archive.file_name}}</th></tr>
+    <tr><td>User Name:</td><th>{{$ctrl.archive.user_name}}</th></tr>
+    <tr><td>Upload Time:</td><th>{{$ctrl.archive.uploaded_on}}</th></tr>
+    <tr><td>Region</td>
+      <th>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <input class="form-control" type="text" readonly value="{{$ctrl.archive.region}}">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <select class="form-control" data-ng-model="$ctrl.region"
+                      data-ng-options="region.name for region in $ctrl.regions"
+                      ng-click="$ctrl.selectRegion()">
+              </select>
+            </div>
+          </div>
+        </div>
+      </th>
+    </tr>
+    <tr><td>Country</td>
+      <th>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <input class="form-control" type="text" readonly value="{{$ctrl.archive.country}}">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <select class="form-control" data-ng-model="$ctrl.country"
+                      data-ng-options="country.name for country in $ctrl.countries"
+                      ng-click="$ctrl.selectCountry()">
+              </select>
+            </div>
+          </div>
+        </div>
+      </th>
+    </tr>
+    <tr><td>Project:</td><th>{{$ctrl.archive.project}}</th></tr>
+    <tr><td>Chassis:</td><th>{{$ctrl.archive.chassis}}</th></tr>
+    <tr><td>Project ID:</td><th>{{$ctrl.archive.project_id}}</th></tr>
+    <tr><td colspan="2"><hr></td></tr>
+    </tbody>
+    <tbody>
+    <tr ng-repeat="field in $ctrl.archive.snapshot.fields">
+      <td>{{field.path}}/{{field.file}}</td>
+      <td>
+        <table>
+          <thead>
+          <tr>
+            <td style="width: 50%"></td>
+            <td style="width: 50%"></td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="tag in field.tags">
+            <td>{{ tag.tag }}</td>
+            <td><b>{{ tag.value }}</b></td>
+          </tr>
+          <tr><td colspan="2"><hr></td></tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="$ctrl.update()">Update</button>
+  <button class="btn btn-primary" type="button" ng-click="$ctrl.cancel()">Close</button>
+</div>

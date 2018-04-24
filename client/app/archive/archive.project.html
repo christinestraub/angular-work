@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <h3 class="modal-title">Diagnostics file</h3>
+</div>
+<div class="modal-body">
+  <div class="form-group">
+    <label>CCC #</label>
+    <input class="form-control" ng-model="$ctrl.archive.project_number">
+    <p class="help-block">Please input the project number.</p>
+  </div>
+
+  <div class="form-group">
+    <label>Region</label>
+    <select class="form-control" data-ng-model="$ctrl.region"
+            data-ng-options="region.name for region in $ctrl.regions"
+            ng-click="$ctrl.selectRegion()">
+    </select>
+    <p class="help-block">Please select the region.</p>
+  </div>
+
+  <div class="form-group">
+    <label>Country</label>
+    <select class="form-control" data-ng-model="$ctrl.country"
+            data-ng-options="country.name for country in $ctrl.countries"
+            ng-click="$ctrl.selectCountry()">
+    </select>
+    </select>
+    <p class="help-block">Please select the country.</p>
+  </div>
+
+  <div class="form-group" ng-model="$ctrl.archive">
+    <label>Project:</label>{{$ctrl.archive.project}}<br/>
+    <label>Chassis: </label>{{$ctrl.archive.chassis}}<br/>
+    <label>Project ID:</label>{{$ctrl.archive.project_id}}<br/>
+  </div>
+  <p class="help-block">{{$ctrl.statusMessage}}</p>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">Yes</button>
+  <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">No</button>
+</div>

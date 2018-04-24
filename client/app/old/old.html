@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="col-sm-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          Old Archives
+        </div>
+        <div class="panel-body">
+          <div class="row" style="margin: 10px">
+            <table class="table table-striped" st-safe-src="vm.archives" st-table="vm.displayed">
+              <thead>
+              <tr>
+                <td colspan="7" class="text-right"
+                    st-pagination=""
+                    st-items-by-page="vm.itemsByPage"
+                    st-displayed-pages="vm.displayedPages">
+                </td>
+              </tr>
+              <tr>
+                <th st-sort="file_name">File Name</th>
+                <th st-sort="uploaded_on" width="20%">Uploaded Time</th>
+                <th st-sort="project_number" width="10%">CCC#</th>
+                <th st-sort="project_id" width="10%">Project_ID</th>
+                <th st-sort="chassis" width="10%">Chassis</th>
+                <th st-sort="user_name">User</th>
+                <th st-sort="region">Region</th>
+                <th st-sort="country">Country</th>
+                <th st-sort="">Count</th>
+                <th st-sort=""></th>
+              </tr>
+              <tr>
+                <th><input st-search="file_name" class="input-sm form-control" type="search"></th>
+                <th><input st-search="uploaded_on" class="input-sm form-control" type="search"></th>
+                <th><input st-search="project_number" class="input-sm form-control" type="search"></th>
+                <th><input st-search="project_id" class="input-sm form-control" type="search"></th>
+                <th><input st-search="chassis" class="input-sm form-control" type="search"></th>
+                <th><input st-search="user_name" class="input-sm form-control" type="search"></th>
+                <th><input st-search="region" class="input-sm form-control" type="search"></th>
+                <th><input st-search="country" class="input-sm form-control" type="search"></th>
+                <th></th>
+                <th>
+                  <select class="form-control" data-ng-model="vm.selectedMonth"
+                          ng-options="month.label for month in vm.months"
+                          ng-click="vm.selectMonth()">
+                  </select>
+                </th>
+              </tr>
+              </thead>
+              <tbody ng-show="!vm.loading">
+              <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in vm.displayed">
+                <td>
+                  {{row.file_name}}
+                </td>
+                <td>{{row.uploaded_on}}<br/>{{row.last_month}}</td>
+                <td><p ng-if="row.project_number">{{row.project_number}}</p></td>
+                <td><p ng-if="row.project_id">{{row.project_id}}</p></td>
+                <td><p ng-if="row.chassis">{{row.chassis}}</p></td>
+                <td><p ng-if="row.user_name">{{row.user_name}}</p></td>
+                <td><p ng-if="row.region">{{row.region}}</p></td>
+                <td><p ng-if="row.country">{{row.country}}</p></td>
+                <td>{{row.older}}/{{row.total}}</td>
+                <td style="text-align: center;vertical-align: middle">
+                  <button type="button" class="btn btn-primary" ng-click="vm.delete(row)">Delete</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+Options -Indexes
+
+RewriteEngine On
+
+# Some hosts may require you to use the `RewriteBase` directive.
+# If you need to use the `RewriteBase` directive, it should be the
+# absolute physical path to the directory that contains this htaccess file.
+#
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#RewriteRule ^app/(.*)$ /client/app/$1 [R=301,L]
+#RewriteRule ^assets/(.*)$ /client/assets/$1 [R=301,L]
+#RewriteRule ^bower_components/(.*)$ /client/bower_components/$1 [R=301,L]
+#RewriteRule ^components/(.*)$ /client/components/$1 [R=301,L]
+
+RewriteRule ^app/(.*)$ /dist/client/app/$1 [R=301,L]
+RewriteRule ^assets/(.*)$ /dist/client/assets/$1 [R=301,L]
+RewriteRule ^bower_components/(.*)$ /dist/client/bower_components/$1 [R=301,L]
+RewriteRule ^components/(.*)$ /dist/client/components/$1 [R=301,L]
+
+RewriteRule ^ index.php [QSA,L]
+
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

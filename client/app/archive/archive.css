@@ -1,0 +1,13 @@
+@media screen and (min-width: 768px) {
+    .app-compare-modal .modal-dialog {
+        width: 1000px;
+    }
+
+    .app-modal-window .modal-dialog {
+        width: 800px;
+    }
+}
+
+.compare-modal-table {
+    border: 1px solid black;
+}

@@ -1,0 +1,215 @@
+<div class="container modal-demo">
+  <div class="row">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="page-header">
+          Diagnostic Files
+          <button class="btn btn-primary" ng-click="vm.toggleUploadPanel()">Upload</button>
+          <!--<button class="btn btn-primary" ng-click="vm.syncData()">Sync</button>-->
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-show="vm.uploadPanel">
+    <div class="col-md-12">
+      <div class="panel panel-green">
+        <div class="panel-heading">
+          Upload
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <h3>Select files</h3>
+              <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
+              <!--
+              <div class="form-group">
+                <label>Multiple</label>
+                <input type="file" nv-file-select="" uploader="vm.uploader" multiple/>
+              </div>
+              -->
+              <div class="form-group">
+                <!--<label>Single</label>-->
+                <input id="file_uploader" type="file" nv-file-select="" uploader="vm.uploader"/>
+              </div>
+            </div>
+            <div class="col-sm-9">
+              <div class="col-sm-12">
+                <h3>Upload status</h3>
+                <!--<p>Queue length: {{ vm.uploader.queue.length }}</p>-->
+
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th width="50%">Name</th>
+                    <th ng-show="vm.uploader.isHTML5">Size</th>
+                    <th ng-show="vm.uploader.isHTML5">Progress</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr ng-repeat="item in vm.uploader.queue">
+                    <td><strong>{{ item.file.name }}</strong></td>
+                    <td ng-show="vm.uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                    <td ng-show="vm.uploader.isHTML5">
+                      <div class="progress" style="margin-bottom: 0;">
+                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                      <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                      <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                    </td>
+                    <td nowrap>
+                      <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()"
+                              ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                        <span class="glyphicon glyphicon-upload"></span> Upload
+                      </button>
+                      <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()"
+                              ng-disabled="!item.isUploading">
+                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                      </button>
+                      <button type="button" class="btn btn-danger btn-xs" ng-click="vm.removeItem(item)">
+                        <span class="glyphicon glyphicon-trash"></span> Remove
+                      </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+
+                <div>
+                  <div>
+                    Queue progress:
+                    <div class="progress" style="">
+                      <div class="progress-bar" role="progressbar" ng-style="{ 'width': vm.uploader.progress + '%' }"></div>
+                    </div>
+                  </div>
+                  <!---
+                  <button type="button" class="btn btn-success btn-s" ng-click="vm.uploader.uploadAll()"
+                          ng-disabled="!vm.uploader.getNotUploadedItems().length">
+                    <span class="glyphicon glyphicon-upload"></span> Upload all
+                  </button>
+                  <button type="button" class="btn btn-warning btn-s" ng-click="vm.uploader.cancelAll()"
+                          ng-disabled="!vm.uploader.isUploading">
+                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                  </button>
+                  <button type="button" class="btn btn-danger btn-s" ng-click="vm.uploader.clearQueue()"
+                          ng-disabled="!vm.uploader.queue.length">
+                    <span class="glyphicon glyphicon-trash"></span> Remove all
+                  </button>
+                  --->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-sm-8"></div>
+            <div class="col-sm-2"><button class="btn panel-green" ng-click="vm.hideUploadPanel()">Close</button></div>
+            <div class="col-sm-2"><button class="btn panel-green" ng-click="vm.clearUploadPanel()">Clear</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          Diagnostics file
+          <div class="pull-right">
+            Total {{vm.archives.length}} archives
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="row" style="margin: 10px">
+            <table class="table table-striped" st-safe-src="vm.archives" st-table="vm.displayed">
+              <thead>
+              <tr>
+                <td colspan="7" class="text-right"
+                    st-pagination=""
+                    st-items-by-page="vm.itemsByPage"
+                    st-displayed-pages="vm.displayedPages">
+                </td>
+              </tr>
+              <tr>
+                <th st-sort="file_name">File Name</th>
+                <th st-sort="uploaded_on">Uploaded Time</th>
+                <th st-sort="project_number">CCC#</th>
+                <th st-sort="project_id">Project_ID</th>
+                <th st-sort="chassis">Chassis</th>
+                <th st-sort="user_name">User</th>
+                <th st-sort="region">Region</th>
+                <th st-sort="country">Country</th>
+                <th st-sort="" style="width: 120px"></th>
+              </tr>
+              <tr>
+                <th>
+                  <input st-search="file_name" class="input-sm form-control" type="search">
+                </th>
+                <th>
+                  <input st-search="uploaded_on" class="input-sm form-control" type="search">
+                </th>
+                <th width="10%">
+                  <input st-search="project_number" class="input-sm form-control" type="search"/>
+                </th>
+                <th width="10%">
+                  <input st-search="project_id" class="input-sm form-control" type="search">
+                </th>
+                <th width="10%">
+                  <input st-search="chassis" class="input-sm form-control" type="search">
+                </th>
+                <th width="10%">
+                  <input st-search="user_name" class="input-sm form-control" type="search">
+                </th>
+                <th width="10%">
+                  <input st-search="region" class="input-sm form-control" type="search">
+                </th>
+                <th width="10%">
+                  <input st-search="country" class="input-sm form-control" type="search">
+                </th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody ng-show="!vm.loading">
+                <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in vm.displayed">
+                  <td>
+                    {{row.file_name}}
+                  </td>
+                  <td>{{row.uploaded_on}}</td>
+                  <td><p ng-if="row.project_number">{{row.project_number}}</p></td>
+                  <td>{{row.project_id}}</td>
+                  <td>{{row.chassis}}</td>
+                  <td>{{row.user_name}}</td>
+                  <td>{{row.region}}</td>
+                  <td>{{row.country}}</td>
+                  <td>
+                    <div class="btn-group" uib-dropdown>
+                      <button id="split-button" type="button" class="btn btn-primary">Action</button>
+                      <button type="button" class="btn btn-primary" uib-dropdown-toggle>
+                        <span class="caret"></span>
+                        <span class="sr-only">Split button!</span>
+                      </button>
+                      <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+                        <li role="menuitem"><a href="#" ng-click="vm.snapshot(row)">Snapshot</a></li>
+                        <li role="menuitem"><a href="#" ng-click="vm.downloadFile(row)">Download</a></li>
+                        <li role="menuitem"><a href="#" ng-click="vm.compare(row)">Compare</a></li>
+                        <li role="menuitem"><a href="#" ng-click="vm.parse(row)">Check</a></li>
+                        <li class="divider"></li>
+                        <li role="menuitem"><a href="#" ng-click="vm.remove(row)">Remove</a></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

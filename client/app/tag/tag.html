@@ -1,0 +1,113 @@
+<div class="container modal-demo">
+  <div class="row">
+    <div class="col-sm-7">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          Tags
+        </div>
+        <div class="panel-body">
+          <div class="row" style="margin: 10px">
+            <table class="table table-striped" st-pipe="vm.callServer" st-table="vm.displayed">
+              <thead>
+              <tr>
+                <th><button class="btn btn-primary" ng-click="vm.restoreDb()">Restore</button></th>
+                <th>You can restore the entire database with default values using "Restore" button</th>
+                <th style="width: 20%"></th>
+              </tr>
+              <tr>
+                <th><label>File Name</label></th>
+                <th><input class="form-control" ng-model="vm.file_name"></th>
+                <th><button class="btn btn-primary" ng-click="vm.addTag()">Add</button></th>
+              </tr>
+              <tr>
+                <th st-sort="">File</th>
+                <th st-sort="">Field</th>
+                <th st-sort="">Action</th>
+              </tr>
+              </thead>
+              <tbody ng-show="!vm.loading">
+                <tr ng-repeat="row in vm.displayed">
+                  <td>{{row.file_name}}</td>
+                  <td>
+                    <ui class="list-group">
+                      <li class="list-group-item" ng-repeat="fld in row.field_list">
+                        {{fld}}
+                      </li>
+                    </ui>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="vm.editTag(row)">
+                      <span class="glyphicon glyphicon-edit"></span>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="vm.removeTag(row)">
+                      <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          Edit
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label>File Name</label>
+                <input class="form-control" ng-model="vm.tag.file_name" readonly>
+              </div>
+              <div class="form-group">
+                <!--<div id="grid1" ui-grid="vm.gridOptions" class="grid"></div>-->
+                <table st-table="vm.field_data" class="table">
+                  <tbody>
+                  <tr ng-repeat="row in vm.field_data">
+                    <!--<td>-->
+                      <!--<input type="checkbox" data-style="button"-->
+                             <!--checklist-model="vm.selectedTags" checklist-value="fld">-->
+                    <!--</td>-->
+                    <td>{{row.field}}</td>
+                    <td>
+                      <button type="button" class="btn btn-danger btn-xs" ng-click="vm.editField(row)">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </button>
+                      <button type="button" class="btn btn-danger btn-xs" ng-click="vm.removeField(row)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                      </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="form-group">
+                <input class="form-control" ng-model="vm.new_field">
+              </div>
+              <div class="form-group">
+                <div class="row pull-right">
+                  <div class="col-lg-12 pull-right">
+                    <button class="btn btn-primary" ng-click="vm.addField()">{{vm.fieldAction}}</button>
+                    <button class="btn btn-primary" ng-click="vm.resetField()">Reset</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row"><hr /></div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="form-group">
+                <button class="btn btn-primary" ng-click="vm.updateTag()">Save</button>
+                <button class="btn btn-primary" ng-click="vm.resetTag()">Restore</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+{
+  "files": [
+    {
+      "file_name": "snapshot.csv",
+      "fields": [
+        "^@GV\\.Project$",
+        "^@GV\\.ProjectInfo\\.Chassis$",
+        "^@GV\\.ProjectInfo\\.MPU$",
+        "^@GV\\.ProjectInfo\\.Project\\.\\w+$",
+        "^@GV\\.Ramix_Top_IP$",
+        "^@GV\\.Ramix_Bottom_IP$",
+        "^@GV\\.CardStatus\\.\\d+\\.CardSerialNo$",
+        "^@GV\\.OsVersions\\.\\d+\\.\\d+$"
+      ]
+    },
+    {
+      "file_name": "errlog.txt",
+      "fields": []
+    }
+  ]
+}

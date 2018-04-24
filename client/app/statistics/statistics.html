@@ -1,0 +1,170 @@
+<div class="container">
+  <div class="row">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="page-header">
+          Statistics
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              Uploads per Region
+            </div>
+            <div class="panel-body">
+              <div class="row" style="margin: 10px">
+                <table class="table table-striped" st-table="vm.dispPerRegions" st-safe-src="vm.statPerRegions">
+                  <thead>
+                  <tr>
+                    <th st-sort="region" st-sort-ascent="st-sort-ascent" st-sort-descent="st-sort-descent">Region</th>
+                    <th st-sort="count" st-sort-ascent="st-sort-ascent" st-sort-descent="st-sort-descent">Uploaded Count</th>
+                    <th st-sort="uploaded_on" st-sort-ascent="st-sort-ascent" st-sort-descent="st-sort-descent">Last Upload</th>
+                    <th st-sort="percent" st-sort-ascent="st-sort-ascent" st-sort-descent="st-sort-descent">Percent</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr st-select-row="row" ng-repeat="row in vm.dispPerRegions">
+                    <td>{{row.region}}</td>
+                    <td>{{row.count}}</td>
+                    <td>{{row.uploaded_on}}</td>
+                    <td>{{row.percent}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              Uploads per Country
+            </div>
+            <div class="panel-body">
+              <div class="row" style="margin: 10px">
+                <table class="table table-striped" st-table="vm.dispPerCountries" st-safe-src="vm.statPerCountries">
+                  <thead>
+                  <tr>
+                    <th st-sort="region" st-sort-ascent="st-sort-ascent" st-sort-descent="st-sort-descent">Region</th>
+                    <th st-sort="country" st-sort-ascent="st-sort-ascent" st-sort-descent="st-sort-descent">Country</th>
+                    <th st-sort="count" st-sort-ascent="st-sort-ascent" st-sort-descent="st-sort-descent">Uploaded Count</th>
+                    <th st-sort="uploaded_on" st-sort-ascent="st-sort-ascent" st-sort-descent="st-sort-descent">Last Upload</th>
+                    <th st-sort="percent">Percent</th>
+                  </tr>
+                  </thead>
+                  <tbody ng-show="!vm.loading">
+                  <tr st-select-row="row" ng-repeat="row in vm.dispPerCountries">
+                    <td>{{row.region}}</td>
+                    <td>{{row.country}}</td>
+                    <td>{{row.count}}</td>
+                    <td>{{row.uploaded_on}}</td>
+                    <td>{{row.percent}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              Uploads per User
+            </div>
+            <div class="panel-body">
+              <div class="row" style="margin: 10px">
+                <table class="table table-striped" st-table="vm.dispPerUsers" st-safe-src="vm.statPerUsers">
+                  <thead>
+                  <tr>
+                    <th st-sort="file_name" st-sort-ascent="st-sort-ascent" st-sort-descent="st-sort-descent">User</th>
+                    <th st-sort="uploaded_on" st-sort-ascent="st-sort-ascent" st-sort-descent="st-sort-descent">Uploaded Count</th>
+                    <th st-sort="user_name" st-sort-ascent="st-sort-ascent" st-sort-descent="st-sort-descent">Last Upload</th>
+                    <th st-sort="project_number" st-sort-ascent="st-sort-ascent" st-sort-descent="st-sort-descent">Percent</th>
+                  </tr>
+                  </thead>
+                  <tbody ng-show="!vm.loading">
+                  <tr st-select-row="row" ng-repeat="row in vm.dispPerUsers">
+                    <td>{{row.username}}</td>
+                    <td>{{row.count}}</td>
+                    <td>{{row.uploaded_on}}</td>
+                    <td>{{row.percent}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              CCC# per Region
+            </div>
+            <div class="panel-body">
+              <div class="row" style="margin: 10px">
+                <table class="table table-striped" st-table="vm.dispCccPerRegion" st-safe-src="vm.statCccPerRegion">
+                  <thead>
+                  <tr>
+                    <th st-sort="region">Region</th>
+                    <th st-sort="count">Count</th>
+                    <th st-sort="percent">Percent</th>
+                  </tr>
+                  </thead>
+                  <tbody ng-show="!vm.loading">
+                  <tr ng-repeat="row in vm.dispCccPerRegion">
+                    <td>{{row.region}}</td>
+                    <td>{{row.count}}</td>
+                    <td>{{row.percent}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              CCC# per Country
+            </div>
+            <div class="panel-body">
+              <div class="row" style="margin: 10px">
+                <table class="table table-striped" st-table="vm.dispCccPerCountry" st-safe-src="vm.statCccPerCountry">
+                  <thead>
+                  <tr>
+                    <th st-sort="region">Country</th>
+                    <th st-sort="count">Count</th>
+                    <th st-sort="percent">Percent</th>
+                  </tr>
+                  </thead>
+                  <tbody ng-show="!vm.loading">
+                  <tr ng-repeat="row in vm.dispCccPerCountry">
+                    <td>{{row.country}}</td>
+                    <td>{{row.count}}</td>
+                    <td>{{row.percent}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

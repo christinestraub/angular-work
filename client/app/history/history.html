@@ -1,0 +1,130 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          Compare
+        </div>
+        <div class="panel-body">
+          <table class="table" st-table="vm.compareList">
+            <thead>
+            <tr>
+              <th>File Name</th>
+              <th>Uploaded Time</th>
+              <th>CCC#</th>
+              <th>Project_ID</th>
+              <th>Chassis</th>
+              <th>User</th>
+              <th>Region</th>
+              <th>Country</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in vm.compareList">
+              <td>{{row.file_name}}</td>
+              <td>{{row.uploaded_on}}</td>
+              <td><p ng-if="row.project_number">{{row.project_number}}</p></td>
+              <td>{{row.project_id}}</p></td>
+              <td>{{row.chassis}}</p></td>
+              <td>{{row.user_name}}</td>
+              <td>{{row.region}}</td>
+              <td>{{row.country}}</td>
+              <td style="width: 120px;"></td>
+            </tr>
+            <tr>
+              <th colspan="9">
+                <div class="pull-right">
+                  "Set as first" and "Set as second" from Action Drop-Down menu
+                  <button class="btn btn-primary" ng-click="vm.compare()">Compare</button>
+                  <button class="btn btn-primary" ng-click="vm.clearCompare()">Reset</button>
+                </div>
+              </th>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          History
+          <div class="pull-right">
+            Total {{vm.archives.length}} archives
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="row" style="margin: 10px">
+            <table class="table table-striped" st-safe-src="vm.archives" st-table="vm.displayed">
+              <thead>
+              <tr>
+                <td colspan="7" class="text-right"
+                    st-pagination=""
+                    st-items-by-page="vm.itemsByPage"
+                    st-displayed-pages="vm.displayedPages">
+                </td>
+              </tr>
+              <tr>
+                <th st-sort="file_name">File Name</th>
+                <th st-sort="uploaded_on" width="10%">Uploaded Time</th>
+                <th st-sort="project_number" width="10%">CCC#</th>
+                <th st-sort="project_id">Project_ID</th>
+                <th st-sort="chassis">Chassis</th>
+                <th st-sort="user_name" width="10%">User</th>
+                <th st-sort="region" width="10%">Region</th>
+                <th st-sort="country" width="10%">Country</th>
+                <th st-sort="" style="width: 120px"></th>
+              </tr>
+              <tr>
+                <th><input st-search="file_name" class="input-sm form-control" type="search"></th>
+                <th><input st-search="uploaded_on" class="input-sm form-control" type="search"></th>
+                <th><input st-search="project_number" class="input-sm form-control" type="search"></th>
+                <th><input st-search="project_id" class="input-sm form-control" type="search"></th>
+                <th><input st-search="chassis" class="input-sm form-control" type="search"></th>
+                <th><input st-search="user_name" class="input-sm form-control" type="search"></th>
+                <th><input st-search="region" class="input-sm form-control" type="search"/></th>
+                <th><input st-search="country" class="input-sm form-control" type="search"/></th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody ng-show="!vm.loading">
+              <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in vm.displayed">
+                <td>
+                  {{row.file_name}}
+                </td>
+                <td>{{row.uploaded_on}}</td>
+                <td><p ng-if="row.project_number">{{row.project_number}}</p></td>
+                <td>{{row.project_id}}</td>
+                <td>{{row.chassis}}</td>
+                <td>{{row.user_name}}</td>
+                <td>{{row.region}}</td>
+                <td>{{row.country}}</td>
+                <td style="text-align: center;vertical-align: middle">
+                  <div class="btn-group" uib-dropdown>
+                    <button id="split-button" type="button" class="btn btn-primary">Action</button>
+                    <button type="button" class="btn btn-primary" uib-dropdown-toggle>
+                      <span class="caret"></span>
+                      <span class="sr-only">Split button!</span>
+                    </button>
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+                      <li role="menuitem"><a href="#" ng-click="vm.snapshot(row)">Snapshot</a></li>
+                      <li role="menuitem"><a href="#" ng-click="vm.downloadFile(row)">Download</a></li>
+                      <li role="menuitem"><a href="#" ng-click="vm.parse(row)">Check</a></li>
+                      <li class="divider"></li>
+                      <li role="menuitem"><a href="#" ng-click="vm.setFirst(row)">Set as first</a></li>
+                      <li role="menuitem"><a href="#" ng-click="vm.setSecond(row)">Set as second</a></li>
+                      <li class="divider"></li>
+                      <li role="menuitem"><a href="#" ng-click="vm.remove(row)">Remove</a></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

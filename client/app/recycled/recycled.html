@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="row">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="page-header">
+          Recycled Bin
+          <!--<button class="btn btn-primary" ng-click="vm.syncData()">Sync</button>-->
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          Recycled Bin
+          <div class="pull-right">
+            Total {{vm.archives.length}} archives
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="row" style="margin: 10px">
+            <table class="table table-striped" st-safe-src="vm.archives" st-table="vm.displayed">
+              <thead>
+              <tr>
+                <td colspan="7" class="text-right"
+                    st-pagination=""
+                    st-items-by-page="vm.itemsByPage"
+                    st-displayed-pages="vm.displayedPages">
+                </td>
+              </tr>
+              <tr>
+                <th st-sort="file_name">File Name</th>
+                <th st-sort="uploaded_on">Uploaded Time</th>
+                <th st-sort="project_number">CCC#</th>
+                <th st-sort="project_id">Project_ID</th>
+                <th st-sort="chassis">Chassis</th>
+                <th st-sort="user_name">User</th>
+                <th st-sort="region">Region</th>
+                <th st-sort="country">Country</th>
+                <th></th>
+              </tr>
+              <tr>
+                <th><input st-search="file_name" class="input-sm form-control" type="search"></th>
+                <th><input st-search="uploaded_on" class="input-sm form-control" type="search"></th>
+                <th width="10%"><input st-search="project_number" class="input-sm form-control" type="search"/></th>
+                <th width="10%"><input st-search="project_id" class="input-sm form-control" type="search"/></th>
+                <th width="10%"><input st-search="chassis" class="input-sm form-control" type="search"/></th>
+                <th width="10%"><input st-search="user_name" class="input-sm form-control" type="search"></th>
+                <th width="10%"><input st-search="region" class="input-sm form-control" type="search"></th>
+                <th width="10%"><input st-search="country" class="input-sm form-control" type="search"></th>
+                <th width="120px"></th>
+              </tr>
+              </thead>
+              <tbody ng-show="!vm.loading">
+                <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in vm.displayed">
+                  <td>
+                    {{row.file_name}}
+                  </td>
+                  <td>{{row.uploaded_on}}</td>
+                  <td><p ng-if="row.project_number">{{row.project_number}}</p></td>
+                  <td>{{row.project_id}}</td>
+                  <td>{{row.chassis}}</td>
+                  <td>{{row.user_name}}</td>
+                  <td>{{row.region}}</td>
+                  <td>{{row.country}}</td>
+                  <td>
+                    <div class="btn-group" uib-dropdown>
+                      <button id="split-button" type="button" class="btn btn-primary">Action</button>
+                      <button type="button" class="btn btn-primary" uib-dropdown-toggle>
+                        <span class="caret"></span>
+                        <span class="sr-only">Split button!</span>
+                      </button>
+                      <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+                        <li role="menuitem"><a href="#" ng-click="vm.downloadFile(row)">Download</a></li>
+                        <li role="menuitem"><a href="#" ng-click="vm.restore(row)">Restore</a></li>
+                        <li class="divider"></li>
+                        <li role="menuitem"><a href="#" ng-click="vm.delete(row)">Delete</a></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

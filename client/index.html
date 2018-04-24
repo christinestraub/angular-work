@@ -1,0 +1,207 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <META HTTP-EQUIV='PRAGMA' CONTENT='NO-CACHE'>
+    <META HTTP-EQUIV='CACHE-CONTROL' CONTENT='NO-CACHE'>
+    <base href="/">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(client) app/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.min.css" />
+    <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+    <link rel="stylesheet" href="bower_components/datatables/media/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="bower_components/ng-table/dist/ng-table.css" />
+    <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.css" />
+    <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.css" />
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,client}) app/app.css -->
+    <link rel="stylesheet" href="app/app.css">
+    <!-- injector:css -->
+    <link rel="stylesheet" href="app/admin/admin.css">
+    <link rel="stylesheet" href="app/app.css">
+    <link rel="stylesheet" href="app/archive/archive.css">
+    <link rel="stylesheet" href="app/history/history.css">
+    <link rel="stylesheet" href="app/main/main.css">
+    <link rel="stylesheet" href="app/old/old.css">
+    <link rel="stylesheet" href="app/recycled/recycled.css">
+    <link rel="stylesheet" href="app/snapshot/snapshot.css">
+    <link rel="stylesheet" href="app/statistics/statistics.css">
+    <link rel="stylesheet" href="app/tag/tag.css">
+    <link rel="stylesheet" href="components/footer/footer.css">
+    <link rel="stylesheet" href="components/modal/modal.css">
+    <link rel="stylesheet" href="components/snapshot/snapshot.css">
+    <!-- endinjector -->
+    <!-- endbuild -->
+</head>
+<body ng-app="snapshotApp">
+<!--[if lt IE 7]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<navbar></navbar>
+<div ng-view=""></div>
+<footer></footer>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+</script>
+
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.min.js"></script>
+<![endif]-->
+<!-- build:js({client,node_modules}) app/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-filter/dist/angular-filter.js"></script>
+<script src="bower_components/datatables.net/js/jquery.dataTables.js"></script>
+<script src="bower_components/angular-datatables/dist/angular-datatables.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/colreorder/angular-datatables.colreorder.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/columnfilter/angular-datatables.columnfilter.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/light-columnfilter/angular-datatables.light-columnfilter.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/colvis/angular-datatables.colvis.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/fixedcolumns/angular-datatables.fixedcolumns.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/fixedheader/angular-datatables.fixedheader.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/scroller/angular-datatables.scroller.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/tabletools/angular-datatables.tabletools.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/buttons/angular-datatables.buttons.js"></script>
+<script src="bower_components/angular-datatables/dist/plugins/select/angular-datatables.select.js"></script>
+<script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+<script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+<script src="bower_components/angular-validation-match/dist/angular-validation-match.min.js"></script>
+<script src="bower_components/lodash/dist/lodash.compat.js"></script>
+<script src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
+<script src="bower_components/ng-table/dist/ng-table.js"></script>
+<script src="bower_components/ng-dialog/js/ngDialog.js"></script>
+<script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/angular-momentjs/angular-momentjs.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+<!-- build:js(.tmp) app/app.js -->
+<script src="app/app.js"></script>
+<script src="app/admin/admin.module.js"></script>
+<script src="components/auth/auth.module.js"></script>
+<script src="components/util/util.module.js"></script>
+<script src="app/recycled/recycled.delete.js"></script>
+<script src="app/admin/admin.controller.js"></script>
+<script src="app/account/account.js"></script>
+<script src="app/admin/admin.router.js"></script>
+<script src="app/app.constant.js"></script>
+<script src="app/archive/archive.compare.js"></script>
+<script src="app/archive/archive.controller.js"></script>
+<script src="app/archive/archive.js"></script>
+<script src="app/archive/archive.project.js"></script>
+<script src="app/archive/archive.remove.js"></script>
+<script src="app/history/history.compare.js"></script>
+<script src="app/history/history.controller.js"></script>
+<script src="app/history/history.js"></script>
+<script src="app/history/history.remove.js"></script>
+<script src="app/main/main.controller.js"></script>
+<script src="app/main/main.js"></script>
+<script src="app/old/old.controller.js"></script>
+<script src="app/old/old.delete.js"></script>
+<script src="app/old/old.js"></script>
+<script src="app/recycled/recycled.controller.js"></script>
+<script src="app/account/login/login.controller.js"></script>
+<script src="app/recycled/recycled.js"></script>
+<script src="app/snapshot/snapshot.controller.js"></script>
+<script src="app/snapshot/snapshot.js"></script>
+<script src="app/statistics/statistics.controller.js"></script>
+<script src="app/statistics/statistics.js"></script>
+<script src="app/tag/tag.controller.js"></script>
+<script src="app/tag/tag.js"></script>
+<script src="app/tag/tag.remove.js"></script>
+<script src="app/account/settings/settings.controller.js"></script>
+<script src="components/auth/auth.service.js"></script>
+<script src="components/auth/interceptor.service.js"></script>
+<script src="components/auth/router.decorator.js"></script>
+<script src="components/auth/user.service.js"></script>
+<script src="components/footer/footer.directive.js"></script>
+<script src="components/modal/delete/delete.modal.js"></script>
+<script src="components/modal/modal.service.js"></script>
+<script src="components/mongoose-error/mongoose-error.directive.js"></script>
+<script src="components/navbar/navbar.controller.js"></script>
+<script src="components/navbar/navbar.directive.js"></script>
+<script src="components/snapshot/snapshot.js"></script>
+<script src="app/account/signup/signup.controller.js"></script>
+<script src="components/util/util.service.js"></script>
+<!-- injector:js -->
+<script src="app/admin/admin.module.js"></script>
+<script src="components/auth/auth.module.js"></script>
+<script src="components/util/util.module.js"></script>
+<script src="app/recycled/recycled.delete.js"></script>
+<script src="app/admin/admin.controller.js"></script>
+<script src="app/account/account.js"></script>
+<script src="app/admin/admin.router.js"></script>
+<script src="app/app.constant.js"></script>
+<script src="app/archive/archive.compare.js"></script>
+<script src="app/archive/archive.controller.js"></script>
+<script src="app/archive/archive.js"></script>
+<script src="app/archive/archive.project.js"></script>
+<script src="app/archive/archive.remove.js"></script>
+<script src="app/history/history.compare.js"></script>
+<script src="app/history/history.controller.js"></script>
+<script src="app/history/history.js"></script>
+<script src="app/history/history.remove.js"></script>
+<script src="app/main/main.controller.js"></script>
+<script src="app/main/main.js"></script>
+<script src="app/old/old.controller.js"></script>
+<script src="app/old/old.delete.js"></script>
+<script src="app/old/old.js"></script>
+<script src="app/recycled/recycled.controller.js"></script>
+<script src="app/account/login/login.controller.js"></script>
+<script src="app/recycled/recycled.js"></script>
+<script src="app/snapshot/snapshot.controller.js"></script>
+<script src="app/snapshot/snapshot.js"></script>
+<script src="app/statistics/statistics.controller.js"></script>
+<script src="app/statistics/statistics.js"></script>
+<script src="app/tag/tag.controller.js"></script>
+<script src="app/tag/tag.js"></script>
+<script src="app/tag/tag.remove.js"></script>
+<script src="app/account/settings/settings.controller.js"></script>
+<script src="components/auth/auth.service.js"></script>
+<script src="components/auth/interceptor.service.js"></script>
+<script src="components/auth/router.decorator.js"></script>
+<script src="components/auth/user.service.js"></script>
+<script src="components/footer/footer.directive.js"></script>
+<script src="components/modal/delete/delete.modal.js"></script>
+<script src="components/modal/modal.service.js"></script>
+<script src="components/mongoose-error/mongoose-error.directive.js"></script>
+<script src="components/navbar/navbar.controller.js"></script>
+<script src="components/navbar/navbar.directive.js"></script>
+<script src="components/snapshot/snapshot.js"></script>
+<script src="app/account/signup/signup.controller.js"></script>
+<script src="components/util/util.service.js"></script>
+<!-- endinjector -->
+<!-- endbuild -->
+</body>
+</html>

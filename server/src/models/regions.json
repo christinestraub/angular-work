@@ -1,0 +1,47 @@
+[
+    {
+        "name": "North America", "code": 100,
+        "countries": [
+            { "name": "US", "code": 101 },
+            { "name": "Canada", "code": 102 },
+            { "name": "Mexico", "code": 103 }
+        ]
+    },
+    {
+        "name": "South America", "code": 200,
+        "countries": [
+            { "name": "Brazil", "code": 201 }
+        ]
+    },
+    {
+        "name": "Europe", "code": 300,
+        "countries": [
+            { "name": "Brazil", "code": 301 }
+        ]
+    },
+    {
+        "name": "Africa", "code": 400,
+        "countries": [
+            { "name": "South Africa", "code": 401 }
+        ]
+    },
+    {
+        "name": "Middle East", "code": "500",
+        "countries": [
+            { "name": "Saudi Arabia", "code": 501 }
+        ]
+    },
+    {
+        "name": "Russia", "code": "600",
+        "countries": [
+            { "name": "Russia", "code": 601 }
+        ]
+    },
+    {
+        "name": "Asia Pacific",
+        "code": "700",
+        "countries": [
+            { "name": "Japan", "code": 701 }
+        ]
+    }
+]
